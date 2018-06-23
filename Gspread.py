@@ -1,6 +1,5 @@
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
-import pprint
+from oauth2client.service_account import ServiceAccountCredentia
 
 print('*****Started merging*****')
 
