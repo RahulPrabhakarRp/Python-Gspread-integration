@@ -1,19 +1,31 @@
 Manage your spreadsheets with gspread in Python.
 
-This project was aimed at solving the problem of the Master file getting corrupted when multiple resources directly update their logs in the file. Also an approach to semi automate the spreadsheet management process with gspread.
+# Managing the gsheets updation
+
+This project was aimed at solving the problem of the Master file getting corrupted when multiple resources directly update their logs. Also an approach to semi automate the spreadsheet management process with python-gspread integration.
 
 # Python Gspread integration
 
 step 1--> Obtain OAuth2 credentials from Google Developers Console (http://gspread.readthedocs.io/en/latest/oauth2.html)
+
 Step 2--> Start using gpread
 
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
+#Authorization and setting up scope
+scope = ['https://spreadsheets.google.com/feeds',
+         'https://www.googleapis.com/auth/drive']
+creds = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+client = gspread.authorize(creds)
 
-In this project the resources will continue to maintain their own personal sheets  and the data will from these individual sources will be updated to master file as the script is run.
 
-As the script is run it collects all the data from the individual sheets and append the same in the master file.
+In this project the resources will continue to maintain their own personal sheets and the data from these individual sources are to be updated to master file as the script is run.
+
+When the script is run it collects all the data from the individual sheets and append the same in the master file.
+The name of these sheets has to be declared and please note they are case sensitive
+
+resource_sheetnames = ['Rp','simi']
 
 #Loops each sheet names
 for sheetname in resource_sheetnames:
